@@ -13,3 +13,11 @@ filter_high_value = df_empresa["Faturamento"] > 300.0
 high_value_products = df_empresa[filter_high_value]
 print(\n--- High Value Products ---")
 print(high_value_products)
+
+dados_vendas = "Cliente,Valor\nNatanael,150.0\nCarlos,200.0\nAmanda,\nBruno,100.0"
+df_vendas = pd.read_csv(io.StringIO(dados_vendas))
+
+media_valores = df_vendas["Valor"].mean()
+df_vendas_media = df_vendas.fillna(media_valores)
+print("\n--- Planilha de Vendas Tratada com a Media ---")
+print(df_vendas_media)

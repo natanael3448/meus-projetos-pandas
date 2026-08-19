@@ -36,3 +36,13 @@ def analisador_de_vendas(dados_brutos, nome_projeto):
     plt.show()
 planilha_loja = "Produto,Faturamento\nTeclado,300.0\nMonitor,\nMouse,240.0\nHeadset,440.0"
 analisador_de_vendas(planilha_loja, "Loja do Natanael")
+
+import pandas as pd
+import io
+dados_clientes = "ID,Nome,Cidade\n1,Natanael,Rio de Janeiro\n2,Carlos,Sao Paulo\n3,Amanda,Belo Horizonte"
+df_cliente = pd.read_csv(io.StringIO(dados_clientes))
+dados_vendas = "ID_Cliente,Produto,Valor\n1,Teclado Premium,300.0\n1,Mouse Gamer,150.0\n2,Monitor Ultra,1200.0\n3Headset Led,250.0"
+df_vendas = pd.read_csv(io.StringIO(dados_vendas))
+df_relatorio_completo = pd.merge(df_clientes, df_vendas, left_on="ID", right_on="ID_Cliente")
+print("--- RELATORIO EXECUTIVO CRUZADO (NIVEL PLENO) ---")
+print(df_relatorio_completo[["Nome", "Produto", "Valor", "Cidade"]])

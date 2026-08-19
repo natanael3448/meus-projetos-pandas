@@ -21,3 +21,18 @@ media_valores = df_vendas["Valor"].mean()
 df_vendas_media = df_vendas.fillna(media_valores)
 print("\n--- Planilha de Vendas Tratada com a Media ---")
 print(df_vendas_media)
+
+def analisador_de_vendas(dados_brutos, nome_projeto):
+    df = pd.read_csv(io.StringIO.(dados_brutos))
+    media = df["Faturamento"].mean()
+    df_limpo = df.fillna(media)
+    fig, ax = plt.subplots(figsize=(7, 4))
+    barras = ax.bar(df_limpo["Produto"], df_limpo["Faturamento"], color="purple")
+    ax.bar_label(barras, padding=3, fontweight="bold")
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.spines["left"].set_visible(False)
+    plt.title("Relatorio Automatizado: " + nome_projeto, fontsize=12, fontsize="bold)
+    plt.show()
+planilha_loja = "Produto,Faturamento\nTeclado,300.0\nMonitor,\nMouse,240.0\nHeadset,440.0"
+analisador_de_vendas(planilha_loja, "Loja do Natanael")

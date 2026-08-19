@@ -46,3 +46,19 @@ df_vendas = pd.read_csv(io.StringIO(dados_vendas))
 df_relatorio_completo = pd.merge(df_clientes, df_vendas, left_on="ID", right_on="ID_Cliente")
 print("--- RELATORIO EXECUTIVO CRUZADO (NIVEL PLENO) ---")
 print(df_relatorio_completo[["Nome", "Produto", "Valor", "Cidade"]])
+
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+dados = {"Marketing": [10.0, 20.0, 30.0, 40.0, 50.0],
+         "Faturamento": [20.0, 40.0, 60.0, 80.0, 100.0]
+}
+df_historico = pd.DataFrame(dados)
+x = df_historico[["Marketing"]]
+y = df_historico["Faturamento"]
+modelo_ia = LinearRegression()
+modelo_ia.fit(x, y)
+orcamento_novo_jogo = np.array([[60.0]])
+previsao_faturamento = modelo_ia.predict(orcamento_novo_jogo)
+print("--- PREVISAO DA INTELIGENCIA ARTIFICIAL ---")
+print(f"se investir US$ 60 mil em marketing, o faturamento estimado do novo jogo sera de: US$ {previsao_faturamento[0]:.2f} mil!")
